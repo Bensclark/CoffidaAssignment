@@ -1,56 +1,58 @@
 import React, { Component } from 'react';
-import { Text, View,Button, FlatList, ScrollView, ActivityIndicator, StyleSheet } from 'react-native';
+import { Text, View,Button, FlatList, ScrollView, ActivityIndicator, StyleSheet, Image } from 'react-native';
 import AsyncStorage  from '@react-native-async-storage/async-storage';
+
 
 class HomeScreen extends Component{
   constructor(props){
     super(props);
-
-    this.state = {loggedIn: false, locationData: [], key: ''
-    };
-
   }
 
-
   render(){
-
-      return(
-        <View style = {styles.homeBackground}>
-          <Text> Welcome to Coffida! </Text>
-          <View style = {styles.loginButton}>
-            <Button
-            //style = {styles.buttonCustom}
-
-              color = '#b266ff'
-              title = 'Login'
-              onPress = {() => this.props.navigation.navigate('LoginScreen')}
-              />
-          </View>
+    return(
+      <View style = {styles.homeBackground}>
+        <View style = {styles.titleview}>
+          <Text style = {styles.title}> Welcome to Coffida! </Text>
+        </View>
+        <Image style ={styles.image} source = {require('../storage/photos/home.jpg')} />
+        <View style = {styles.accountButtons}>
           <Button
-            color = '#b266ff'
+            color = '#6ed9ef'
+            title = 'Login'
+            onPress = {() => this.props.navigation.navigate('LoginScreen')}
+          />
+          <Button
+            color = '#0066cc'
             title = 'Sign Up'
             onPress = {() => this.props.navigation.navigate('RegisterScreen')}
           />
-
         </View>
-
-      )
+      </View>
+    )
   }
-
-//  componentDidMount(){
-  //  this.getData();
-
-//  }
-
 }
 
 const styles = StyleSheet.create({
   homeBackground:{
     margin:10,
-    backgroundColor: '#cc99ff',
+    alignItems: 'stretch',
+    height : '95%',
+    justifyContent: 'space-between'
+  },
+  accountButtons:{
+    margin: 5
+  },
+  image:{
+    width:'100%',
+    height: '70%'
+  },
+  title:{
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  titleview:{
+    alignItems:'center'
   }
 })
-
-
 
 export default HomeScreen;
